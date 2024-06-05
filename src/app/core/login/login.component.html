@@ -1,0 +1,30 @@
+<div id="fullscreen_bg" class="fullscreen_bg">
+</div>
+<div class="container">
+    <div class="demo">
+        <form class="login"  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="login-form">
+                <div class="login_form">
+                    <div class="login_row">
+                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                        <input type="text" (keydown)="loginChange()" formControlName="username" class="login_input" placeholder="Username">
+                    </div>
+                    <div class="login_row">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input type="password" (keydown)="loginChange()" formControlName="password" class="login_input" placeholder="Password">
+                    </div>
+                    <div class="login_invalid" [@loginState]="loginValid">
+                        &nbsp;
+                        <span>The username or password is incorrect.</span>
+                    </div>
+                    <button type="submit" class="login_submit" >
+                        Log in
+                    </button>
+                    <p class="login_contact">
+                        <a target="_blank" href="mailto:support@fleetvisual.com">support@fleetvisual.com</a>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

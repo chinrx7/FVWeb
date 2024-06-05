@@ -1,0 +1,124 @@
+.bg-bluegrad{
+    background:linear-gradient(to right, rgba(37,74,96,1), rgba(20,45,61,1));
+}
+
+.navbar{
+    padding: 0rem 0rem;
+
+}
+
+
+.navbar-brand{
+    color:#FD674E;
+    font-size: 25px;
+    font-style: italic;
+    margin-left: 25px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+.navbar-collapse{
+    margin-left: 40px;
+}
+
+.nav-icon{
+    text-align: center;
+    font-size: 20px;
+    color:white;
+}
+
+
+
+.nav-text{
+    text-align: center;
+    font-size: 12px;
+    color:white;
+}
+
+.nav-item{
+    margin-right: 10px;
+    width:auto;
+    min-width: 80px;
+    cursor: pointer;
+    padding: 0px 3px;
+    background: transparent;
+    transition: background-color 0.2s ease;
+    -webkit-transition:background-color 0.2s ease;
+    height: 60px;
+    outline: none;
+    padding-top: 5px;
+}
+
+.nav-item:hover {
+    background: grey;
+}
+
+.navbar-nav > .active{
+
+    border-bottom: 4px solid coral;
+}
+
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(119,136,153, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+@media screen and (max-width: 350px) {
+    .navbar-brand span{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .nav-item {
+       margin: 0px;
+       height: 100%;
+       padding-top: 0px !important;
+    }
+
+    .navbar-collapse {
+        margin-left: 0px;
+    }
+
+    .nav-icon {
+        text-align: center;
+        font-size: 30px;
+        color: white;
+        display: inline;
+        float: left;
+        margin-left: 15px;
+    }
+
+    .nav-text{
+        text-align: center;
+        font-size: 17px;
+        color: white;
+        display: inline;
+        float: right;
+        line-height: 3;
+        margin-right: 15px;
+    }
+
+    .navbar-nav > .active{
+
+        border-right: 4px solid coral;
+        border-bottom: 0.1px solid darkgrey;
+    }
+
+    .nav-item{
+        border-bottom: 0.1px solid darkgrey;
+    }
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }
+
+  .logout{
+    color: orange;
+  }

@@ -1,0 +1,270 @@
+.main
+{
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+    height: 100%;
+}
+
+.vertical-menu a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu {
+    background-color: rgba(48, 94, 118, 0.8);
+    height: 100%;
+}
+
+.form-vessel {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #305E76;
+    border: none;
+    border-bottom: 3px solid white;
+}
+
+.form-vessel::-webkit-input-placeholder {
+    color: white;
+}
+
+.side-icon {
+    flex: 0 0 30%;
+    max-width: 30%;
+    background-color: rgba(48, 94, 118, 0.8);
+    padding: 0px 5px;
+    line-height: 4;
+    text-align: center;
+}
+
+.side-icon > img {
+    height: 80%;
+    width: 100%;
+}
+
+.side-vessel {
+    flex: 0 0 70%;
+    max-width: 70%;
+    background-color: rgba(48, 94, 118, 0.8);
+    display: flex;
+    color: white;
+    flex-wrap: wrap;
+    padding: 3px;
+}
+
+.side-group {
+    display: flex;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+    font-family: 'Crimson+Text', sans-serif;
+}
+
+.side-group:hover {
+    background-color: rgb(30, 52, 63);
+}
+
+.side-vessel-name {
+    flex: 0 0 65%;
+}
+
+.side-vessel-last {
+    flex: 0 0 35%;
+    text-align: center;
+}
+
+.side-vessel-coordinates {
+    flex: 0 0 100%;
+}
+
+.side-vessel-name > .vessel-name {
+    font-size: 12px;
+}
+
+.side-vessel-name > .vessel-desc {
+    font-size: 12px;
+}
+
+.side-vessel-last > .vessel-last {
+    font-size: 11px;
+}
+
+.side-vessel-last > .vessel-last-time {
+    font-size: 14px;
+    color: #05F6E0;
+    font-weight: bold;
+}
+
+.side-vessel-coordinates > .vessel-coordinated {
+    font-size: 11px;
+    color: #05F6E0;
+}
+
+.side-vessel-coordinates > .vessel-near-by {
+    font-size: 12px;
+}
+
+.active {
+    border-right: 7px solid coral;
+}
+
+
+
+
+
+
+.vessel-info {
+    flex: 0 0 70%;
+    max-width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #305E76;
+}
+
+.vessel-arrow {
+    flex: 0 0 10%;
+    max-width: 10%;
+    background-color: #305E76;
+    opacity: 0.8;
+    text-align: center;
+    line-height: 3;
+    color: orange;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.vessel-arrow>i {
+    background-color: wheat;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.ves-icon {
+    /* text-align: center; */
+    flex: 0 0 20%;
+    max-width: 20%;
+    background-color: #305E76;
+    opacity: 0.8;
+    padding: 5px;
+    padding-left: 25px;
+    background-image: url("/assets/images/vessel/glory1.jpg");
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.ves-name {
+    flex: 0 0 70%;
+    max-width: 70%;
+    background-color: #305E76;
+    opacity: 0.8;
+    color: #fff;
+}
+
+.ves-desc {
+    flex: 0 0 30%;
+    max-width: 30%;
+    background-color: #305E76;
+    opacity: 0.8;
+    color: #fff;
+}
+
+.ves-coor {
+    flex: 0 0 100%;
+    max-width: 100%;
+    background-color: #305E76;
+    opacity: 0.8;
+    color: #fff;
+}
+
+.ves-near {
+    flex: 0 0 100%;
+    max-width: 100%;
+    background-color: #305E76;
+    opacity: 0.8;
+    color: #fff;
+}
+
+.selected-vessel {
+    display: none;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    /* border-right: 5px solid coral; */
+}
+
+.selected-vessel .vessel-name {
+    font-size: 13px;
+    padding-left: 5px;
+}
+
+.selected-vessel .vessel-desc {
+    font-size: 13px;
+    padding-left: 5px;
+}
+
+.selected-vessel .vessel-last {
+    font-size: 11px;
+    padding-left: 5px;
+}
+
+.selected-vessel .vessel-last-time {
+    font-size: 16px;
+    color: #05F6E0;
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+.selected-vessel .vessel-coordinated {
+    font-size: 13px;
+    color: #05F6E0;
+    padding-left: 5px;
+}
+
+.selected-vessel .vessel-near-by {
+    font-size: 13px;
+    padding-left: 5px;
+}
+
+/* @media screen and (max-width: 991px) {
+    .main{ width: 100vw;}
+    .side-icon {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    .side-vessel {
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
+    .selected-vessel
+    {
+        
+        display: block;
+    }
+} */
+
+@media screen and (max-width: 991px) {
+    .main{ width: 100%;}
+    /* .side-icon>img {
+        width: 60px;
+    } */
+
+    .side-icon {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    .side-vessel {
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
+    .selected-vessel
+    {
+        display: flex;
+    }
+}

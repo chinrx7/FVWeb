@@ -1,0 +1,143 @@
+/* .login-main{
+    width:100%;
+    height: 100%;
+} */
+
+
+.fullscreen_bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url('/assets/images/login/background.jpg');
+    background-repeat:repeat;
+    /* filter: blur(3px); */
+  }
+
+  .demo {
+
+    width: 27rem;
+    height: 23rem;
+    overflow: hidden;
+    display: block;
+    /* height: 100%; */
+}
+
+@media screen and (max-width: 400px) {
+    .demo {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    
+    .login_input {
+        width: 85%;
+    }
+
+    .login_row > i {
+        width: 10%;
+        margin-right:0px !important; 
+    }
+}
+
+.login {
+    position: relative;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+
+}
+
+.login_form {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    padding: 1.5rem 2.5rem;
+}
+.login_row {
+    height: 5rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.login_icon {
+    margin-bottom: -0.4rem;
+    margin-right: 0.5rem;
+}
+
+.login_input {
+    display: inline-block;
+    height: 100%;
+    font-size: 1.5rem;
+    background: transparent;
+    color: #FDFCFD;
+    border: none;
+    outline-width: 0px;
+    width: 80%;
+}
+
+.login_submit {
+    position: relative;
+    width: 100%;
+    height: 4rem;
+    margin: 1rem 0 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(50, 58, 161,1);
+    font-size: 1.5rem;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-transition: width 0.3s 0.15s, font-size 0.1s 0.15s;
+    transition: width 0.3s 0.15s, font-size 0.1s 0.15s;
+    outline-width: 0px;
+    border: none;
+}
+
+.login_submit:hover{
+    background: rgba(50, 58, 161,0.7) !important;
+}
+
+.login_invalid{
+    margin-top: 1rem;
+    text-align: left;
+    color: lightcoral;
+    font-size: 16px;
+    font-weight: 600;
+    clear: both;
+}
+
+.login_contact{
+    color: darkgray;
+    text-align: right;
+    margin-left: 5px;
+}
+
+.login_input::-webkit-input-placeholder {
+    color: white;
+    opacity: 0.6;
+  }
+
+  .login_row > i {
+    font-size: 25px;
+    color: azure;
+    margin-right: 10px;
+  }
+
+  .login_contact > a{
+    cursor: pointer;
+    color:white;
+  }
+
+
+  .container{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 94%;
+    height: 100%;
+  }

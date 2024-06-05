@@ -1,0 +1,52 @@
+<div class="main">
+    <div class="selected-vessel">
+        <div class="ves-icon" [ngStyle]="{'background-image':'url('+(fvActive$ | async)?.fvInfo.img+')'}">
+        </div>
+        <div class="vessel-info">
+            <div class="ves-name">
+                <div class="vessel-name">{{(fvActive$ | async)?.fvInfo.name}}</div>
+                <div class="vessel-desc">{{(fvActive$ | async)?.fvInfo.desc}}</div>
+            </div>
+            <div class="ves-desc">
+                <div class="vessel-last">Last seen</div>
+                <div class="vessel-last-time" [dashColor]="(fvActive$ | async)?.fvInfo.timestamp"> 
+                    {{fvTimeService.getLastSeen((fvActive$ | async)?.fvInfo.timestamp)}}
+                </div>
+            </div>
+            <div class="ves-coor">
+                <div class="vessel-coordinated">{{coordinatesService.getLatLong((fvActive$ | async)?.fvInfo.lat,(fvActive$ | async)?.fvInfo.long)}}</div>
+            </div>
+            <div class="ves-near">
+                <div class="vessel-near-by">{{(fvActive$ | async)?.fvInfo.near}}</div>
+            </div>
+        </div>
+        <div class="vessel-arrow" (click)="toggle()">
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="vertical-menu" *ngIf="isShowMenu">
+        <input type="text" class="form-vessel"  (input)="searchVessel($event.target.value)" placeholder="SEARCH VESSEL" aria-label="Text input with checkbox">
+        <div class="side-group" (click)="selectVessel(vessel)" *ngFor="let vessel of fvFilter(fvinfos$ | async)" [ngClass]="{'active':vessel.active}">
+            <div class="side-icon">
+                <img [src]="vessel?.img" />
+            </div>
+            <div class="side-vessel">
+                <div class="side-vessel-name">
+                    <div class="vessel-name">{{vessel?.name}}</div>
+                    <div class="vessel-desc">{{vessel?.desc}}</div>
+                </div>
+                <div class="side-vessel-last">
+                    <div class="vessel-last">Last Seen</div>
+                    <div class="vessel-last-time"  [dashColor]="vessel?.timestamp">{{fvTimeService.getLastSeen(vessel?.timestamp)}}</div>
+                </div>
+                <div class="side-vessel-coordinates">
+                    <div class="vessel-coordinated">
+                        <div class="vessel-coordinated">{{coordinatesService.getLatLong(vessel?.lat,vessel?.long)}}</div>
+                    </div>
+                    <div class="vessel-near-by">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

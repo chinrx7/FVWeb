@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <div id="group-ftd1">
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Flow
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(flow_supply?.tagName,flow_supply?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="flow_supply">
+                {{flow_supply?.value | valueLength : 1}}
+            </div>
+            <div class="ftd1-unit">
+                L/h
+            </div>
+        </div>
+    </div>
+    <div id="group-ftd2">
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Flow
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(flow_return?.tagName,flow_return?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="flow_return">
+                {{flow_return?.value | valueLength : 1}}
+            </div>
+            <div class="ftd1-unit">
+                L/h
+            </div>
+        </div>
+    </div>
+    <div id="group-ftd3">
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Cons.
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(cons?.tagName,cons?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="cons">
+                {{cons?.value | valueLength : 1}}
+            </div>
+         
+            <div class="ftd1-unit">
+                L/h
+            </div>
+        </div>
+    </div>
+    <div id="group-ftd4">
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Cons.
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(consL?.tagName,consL?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="consL">
+                {{consL?.value | valueLength : 0}}
+            </div>
+         
+            <div class="ftd1-unit">
+                L
+            </div>
+        </div>
+    </div>
+    <div id="fuel-use">
+
+    </div>
+    <div id="fuel-supply-title">
+        <div style="text-align: center;line-height: 1.5;">
+            <i class="fa fa-caret-right" aria-hidden="true" style="line-height: 0.1;font-size: 18px;"></i>
+        </div>
+        <div style="font-size: 10px;line-height: 0.1;text-align: center;">
+            Fuel Supply
+        </div>
+    </div>
+    <div id="fuel-return-title">
+        <div style="font-size: 10px;line-height: 0.6;">
+            Fuel Return
+        </div>
+        <div style="text-align: center;line-height: 1.5;">
+            <i class="fa fa-caret-left" aria-hidden="true" style="line-height: 0.1;font-size: 18px;"></i>
+        </div>
+
+    </div>
+    <div id="engine">
+        DG
+    </div>
+    
+</div>

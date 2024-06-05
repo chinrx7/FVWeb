@@ -1,0 +1,22 @@
+<div class="main">
+    
+    <div id="fullscreen_bg" class="fullscreen_bg">
+    </div>
+
+    <div class="grid-header">
+        <app-header></app-header>
+    </div>
+        
+    <div class="grid-sidenav" id="sidebar" role="navigation"  *ngIf="showSidebar" (selectedVessel)="onSelectVessel($event)"
+            app-sidebar>
+        </div>
+
+    <div class="grid-content">
+        <router-outlet #myOutlet="outlet"></router-outlet>
+    </div>
+
+    <div class="grid-footer">
+        <app-footer></app-footer>
+    </div>
+
+</div>

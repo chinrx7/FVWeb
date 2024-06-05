@@ -1,0 +1,33 @@
+.content{
+    background-color: white;
+    margin-top: 4px;
+    height: calc(100vh - 170px);
+}
+
+.blank-content{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    height: calc(100vh - 170px);
+    background-color: rgba(48, 94, 118, 0.8)
+}
+
+.lead{
+    color: white;
+    width: 100%;
+    display: table-cell;
+    padding: 10px;
+}
+
+
+@media screen and (min-width:1600px){
+    .blank-content{
+        /* height: calc(56vh) !important; */
+        margin-bottom: 4px;
+    }
+
+    .content{
+        /* height: calc(56vh) !important; */
+        margin-bottom: 4px;
+    }
+
+}

@@ -1,0 +1,226 @@
+<div class="row row-eq-height control-report">
+    <div class="col-lg-2 col-md-12 pd-lr-5" style="margin-right: 10px !important;">
+        <div class="title">
+            PARAMETERS
+        </div>
+        <div class="btn-group form-group">
+            <button (click)="displayDialog = !displayDialog" class="btn btn btn-params search-tags" style="width: 100% !important;">{{tagCount}}</button>
+
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6 pd-lr-5">
+        <div class="title">
+            START
+        </div>
+        <div class="form-group">
+            <p-calendar [showIcon]="true" readonlyInput="true" [(ngModel)]="start" [showTime]="true" dateFormat="dd-M-yy" inputStyleClass="calendar"
+                (onSelect)="onInput()"></p-calendar>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6 pd-lr-5">
+        <div class="title">
+            END
+        </div>
+        <div class="form-group">
+            <p-calendar [showIcon]="true" readonlyInput="true" [(ngModel)]="end" [showTime]="true" dateFormat="dd-M-yy" (onSelect)="onInput()"></p-calendar>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12 time-control align-self-center pd-lr-5">
+        <div class="row" style="margin: 0px 0px;">
+            <div class="col-3 period">
+                <div (click)="selectPeriod('1H')" [ngClass]="{'active':period=='1H'}">1H</div>
+            </div>
+            <div class="col-3 period">
+                <div (click)="selectPeriod('3H')" [ngClass]="{'active':period=='3H'}">3H</div>
+            </div>
+            <div class="col-3 period">
+                <div (click)="selectPeriod('12H')" [ngClass]="{'active':period=='12H'}">12H</div>
+            </div>
+            <div class="col-3 period">
+                <div (click)="selectPeriod('24H')" [ngClass]="{'active':period=='24H'}">24H</div>
+            </div>
+        </div>
+        <div class="row" style="margin: 0px 0px;">
+            <div class="col-3 period">
+                <div (click)="selectPeriod('T')" [ngClass]="{'active':period=='T'}">T</div>
+            </div>
+            <div class="col-3 period">
+                <div (click)="selectPeriod('Y')" [ngClass]="{'active':period=='Y'}">Y</div>
+            </div>
+            <div class="col-3 period">
+                <div (click)="selectPeriod('1W')" [ngClass]="{'active':period=='1W'}">W</div>
+            </div>
+            <div class="col-3 period">
+                <div (click)="selectPeriod('M')" [ngClass]="{'active':period=='M'}">M</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-6 col-6 align-self-center pd-lr-5" [ngClass]="{'col-md-12': !display,'col-12': !display}">
+        <button type="button" class="btn btn-ok" (click)="showLogger()" *ngIf="!loading">
+            <i class="fa fa-check icon-submit" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-ok" *ngIf="loading">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw icon-loading"></i>
+            <span class="sr-only">Loading...</span>
+        </button>
+    </div>
+    <div class="col-lg-1 col-md-6 col-6 align-self-center pd-lr-5" [ngClass]="{'col-md-6': display,'col-6':display}" *ngIf="display" >
+        <button type="button" class="btn btn-ok" (click)="serch()" style="background-color:darkturquoise">
+            <i class="fa fa-download icon-submit" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <!-- <div class="col-lg-1 col-md-6 col-6 align-self-center pd-lr-5">
+            <button type="button" class="btn btn-ok" (click)="test()">
+                I
+            </button>
+        </div> -->
+</div>
+
+<p-dialog [(visible)]="displayDialog" styleClass="different" [draggable]="true"  [responsive]="false" [modal]="true" [closable]="false">
+    <p-header>
+        <div style="float:right">
+            <button class="control-btn btn btn-success" (click)="confirmTag()">OK</button>
+            <button class="control-btn btn btn-warning" (click)="clearListActive()">Clear</button>
+            <button class="control-btn btn btn-danger" (click)="closeDialog()">Cancel</button>
+        </div>
+    </p-header>
+    <div class="container-fluid dialog">
+        <div class="row">
+            <div class="col-lg-2 col-md-6">
+                <div class="list-group" style="margin-bottom: 10px;">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" style="background-color: midnightblue;">
+                        FAVORITE
+
+                    </button>
+                    <button type="button" (click)="selectFav(t)" class="list-group-item list-group-item-action favorite" *ngFor="let t of tagGroup.fav.tags">
+                        {{t.name}}
+                    </button>
+                </div>
+
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('ves',tagGroup.ves.tags,tagGroup.ves)">
+                        VES
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.ves)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.ves.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+
+            </div>
+            <div class="col-lg-2 col-md-6" *ngIf="tagGroup.pme.tags.length > 0">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('pme',tagGroup.pme.tags,tagGroup.pme)">
+                        PME
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.pme)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.pme.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" *ngIf="tagGroup.cme.tags.length > 0">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('cme',tagGroup.cme.tags,tagGroup.cme)">
+                        CME
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.cme)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.cme.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" *ngIf="tagGroup.sme.tags.length > 0">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('sme',tagGroup.sme.tags,tagGroup.sme)">
+                        SME
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.sme)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.sme.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" *ngIf="tagGroup.pae.tags.length > 0">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('pae',tagGroup.pae.tags,tagGroup.pae)">
+                        PAE
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.pae)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.pae.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" *ngIf="tagGroup.cae.tags.length > 0">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('cae',tagGroup.cae.tags,tagGroup.cae)">
+                        CAE
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.cae)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.cae.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" *ngIf="tagGroup.sae.tags.length > 0">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('sae',tagGroup.sae.tags,tagGroup.sae)">
+                        SAE
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.sae)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.sae.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" *ngIf="tagGroup.dg1.tags.length > 0">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('dg1',tagGroup.dg1.tags,tagGroup.dg1)">
+                        DG1
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.dg1)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.dg1.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" *ngIf="tagGroup.dg2.tags.length > 0">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('dg2',tagGroup.dg2.tags,tagGroup.dg2)">
+                        DG2
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.dg2)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.dg2.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" *ngIf="tagGroup.dg3.tags.length > 0">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('dg3',tagGroup.dg3.tags,tagGroup.dg3)">
+                        DG3
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.dg3)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.dg3.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6" *ngIf="tagGroup.dg4.tags.length > 0">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action list-group-item-info" (click)="selectHaederAll('dg4',tagGroup.dg4.tags,tagGroup.dg4)">
+                        DG4
+                    </button>
+                    <button type="button" [ngClass]="{'active':t.check}" (click)="selectedTag(t,tagGroup.dg4)" class="list-group-item list-group-item-action"
+                        *ngFor="let t of tagGroup.dg4.tags">
+                        {{t.tagName}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</p-dialog>
+

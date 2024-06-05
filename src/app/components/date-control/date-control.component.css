@@ -1,0 +1,86 @@
+.control-report .btn-group button:first-child{
+    width: 100%;
+    text-align: left;
+}
+
+.control-report{
+    background-color: #E4F6FC;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.control-report .btn-group {
+    width: 100%;
+}
+
+.btn-light,.dropdown-menu{
+    font-size: 12px;
+}
+
+
+.dropdown-toggle-split{
+    text-align: right !important;
+}
+
+.btn{
+    border-radius: 0px;
+}
+.btn-text{
+    text-align: center;
+}
+
+.title{
+    font-size: 13px;
+    padding-bottom: 5px;
+}
+
+.control-report input{
+    border-radius: 0px;
+}
+
+.form-control{
+    font-size: 13px;
+}
+
+.btn-ok{
+    width:100%;
+
+    background-color: blue;
+    color:white;
+    cursor: pointer;
+}
+
+.dropdown-menu{
+    max-height: 350px;
+    overflow: auto;
+}
+
+
+.dropdown-item {
+    padding: 0.2rem 1.5rem !important;
+    cursor: pointer;
+}
+
+.form-check {
+    margin-bottom: .4rem !important;
+}
+
+>>> .ui-calendar{
+    width:100% !important;
+}
+
+>>> .ui-inputtext{
+    width: calc(100% - 30px) !important;
+    padding: 5px 10px !important;
+    font-size: 12px;
+}
+
+
+>>> .ui-calendar-button{
+    width: 30px !important;
+}
+
+.icon-loading{
+    font-size: 18px;
+    line-height: 1.2;
+}

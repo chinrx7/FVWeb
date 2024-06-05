@@ -1,0 +1,276 @@
+<div class="main">
+
+    <div class="grid-r1c1">
+        <div class="card">
+            <h6 class="card-header">
+                <span class="pull-left tooltip-host">TODAY SUMMARY</span>
+                <span class="pull-right">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                </span>
+            </h6>
+            <div class="card-body">
+                <app-summary 
+                [speedCurr]="(data$ | async)?.VES_GPS_SPEED" 
+                [lat]="(data$ | async)?.VES_GPS_LAT" 
+                [long]="(data$ | async)?.VES_GPS_LONG" 
+                [heading]="(data$ | async)?.VES_GPS_HEAD"
+                [distance]="(data$ | async)?.VES_GPS_DIS_TODAY"                    
+                [speedAvg]="getAvg((data$ | async)?.VES_GPS_DIS_TODAY)"
+                [speedMax]="(data$ | async)?.VES_GPS_SPEED_MAX" 
+                [fuel_cons]="getSum((data$ | async)?.PME_CONS_RATE,(data$ | async)?.CME_CONS_RATE,(data$ | async)?.SME_CONS_RATE,(data$ | async)?.PAE_CONS_RATE,(data$ | async)?.CAE_CONS_RATE,(data$ | async)?.SAE_CONS_RATE,(data$ | async)?.DG1_CONS_RATE,(data$ | async)?.DG2_CONS_RATE,(data$ | async)?.DG3_CONS_RATE,(data$ | async)?.DG4_CONS_RATE)" 
+                [fuelAvg]="getAvg((data$ | async)?.VES_CONS_TODAY)" 
+                [fuelTotal]="(data$ | async)?.VES_CONS_TODAY"></app-summary>
+            </div>
+        </div>
+    </div>
+        
+
+    <div class="grid-r1c2" [class.no-equipment]="getCardDetail((data$ | async)?.VES_GPS_SPEED, 1, 1)?.type.length === 0">
+        
+        <div class="card">
+            <h6 class="card-header">
+                <span class="pull-left" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag">
+                    {{ getCardDetail(tag,1,1)?.title }}
+                </span>
+                <span class="pull-right">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                </span>
+            </h6>
+            <div class="card-body pd-0" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag" [class.no-equipment]="getCardDetail(tag, 1, 1)?.type.length === 0">
+                
+                <ng-template [ngIf]="getCardDetail(tag, 1, 1)?.type === 'ME1'">
+                    <app-main-engine [flow_supply]="(data$ | async)?.PME_FIN_RATE" [temp_supply]="(data$ | async)?.PME_FIN_TEMPC" [dens_supply]="(data$ | async)?.PME_FIN_DENS"
+                        [flow_return]="(data$ | async)?.PME_FOUT_RATE" [temp_return]="(data$ | async)?.PME_FOUT_TEMPC" [dens_return]="(data$ | async)?.PME_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.PME_CONS_RATE)" [consL]="(data$ | async)?.PME_CONS_TODAY" [speed_eng]="(data$ | async)?.PME_SPD_CALC" [speed_gear]="(data$ | async)?.PPS_SPD_CALC"
+                        [load]="(data$ | async)?.PME_ENGINE_LOAD">
+                    </app-main-engine>
+                </ng-template>
+                
+                <ng-template [ngIf]="getCardDetail(tag, 1, 1)?.type === 'DG_RPM'">
+                    <app-aux-engine [flow_supply]="(data$ | async)?.PME_FIN_RATE" [temp_supply]="(data$ | async)?.PME_FIN_TEMPC" [dens_supply]="(data$ | async)?.PME_FIN_DENS"
+                        [flow_return]="(data$ | async)?.PME_FOUT_RATE" [temp_return]="(data$ | async)?.PME_FOUT_TEMPC" [dens_return]="(data$ | async)?.PME_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.PME_CONS_RATE)" [consL]="(data$ | async)?.PME_CONS_TODAY" [speed_eng]="(data$ | async)?.PME_SPD_CALC">
+                    </app-aux-engine>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 1, 1)?.type === 'DG_NO_RPM'">
+                    <app-diesel-generator-no-rpm [flow_supply]="(data$ | async)?.DG1_FIN_RATE" [temp_supply]="(data$ | async)?.DG1_FIN_TEMPC" [dens_supply]="(data$ | async)?.DG1_FIN_DENS"
+                        [flow_return]="(data$ | async)?.DG1_FOUT_RATE" [temp_return]="(data$ | async)?.DG1_FOUT_TEMPC" [dens_return]="(data$ | async)?.DG1_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.DG1_CONS_RATE)" [consL]="(data$ | async)?.DG1_CONS_TODAY">
+                    </app-diesel-generator-no-rpm>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 1, 1)?.type === 'DG_NO_RPM_VTOTAL'">
+                    <app-diesel-generator-no-rpm-vtotal 
+                        [flow_supply]="(data$ | async)?.DG1_FIN_RATE" [flow_return]="(data$ | async)?.DG1_FOUT_RATE" 
+                        [cons]="abs((data$ | async)?.DG1_CONS_RATE)" [consL]="(data$ | async)?.DG1_CONS_TODAY">
+                    </app-diesel-generator-no-rpm-vtotal>
+                </ng-template>
+
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div class="grid-r1c3" [class.no-equipment]="getCardDetail((data$ | async)?.VES_GPS_SPEED, 1, 2)?.type.length === 0">
+        <div class="card">
+            <h6 class="card-header">
+                <span class="pull-left" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag">
+                    {{ getCardDetail(tag, 1, 2)?.title }}
+                </span>
+                <span class="pull-right">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                </span>
+            </h6>
+
+            <div class="card-body pd-0" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag" [class.no-equipment]="getCardDetail(tag, 1, 2)?.type.length === 0">
+                
+                <ng-template [ngIf]="getCardDetail(tag, 1, 2)?.type === 'ME1'">
+                    <app-main-engine [flow_supply]="(data$ | async)?.CME_FIN_RATE" [temp_supply]="(data$ | async)?.CME_FIN_TEMPC" [dens_supply]="(data$ | async)?.CME_FIN_DENS"
+                        [flow_return]="(data$ | async)?.CME_FOUT_RATE" [temp_return]="(data$ | async)?.CME_FOUT_TEMPC" [dens_return]="(data$ | async)?.CME_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.CME_CONS_RATE)" [consL]="(data$ | async)?.CME_CONS_TODAY" [speed_eng]="(data$ | async)?.CME_SPD_CALC" [speed_gear]="(data$ | async)?.CPS_SPD_CALC"
+                        >
+                    </app-main-engine>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 1, 2)?.type === 'MOTOR'">
+                    <app-electric-motor [speed]="(data$ | async)?.PPS_SPD_CALC"></app-electric-motor>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 1, 2)?.type === 'DG_NO_RPM'">
+                    <div class="card-body pd-0">
+                        <app-diesel-generator-no-rpm [flow_supply]="(data$ | async)?.DG2_FIN_RATE" [temp_supply]="(data$ | async)?.DG2_FIN_TEMPC" [dens_supply]="(data$ | async)?.DG2_FIN_DENS"
+                            [flow_return]="(data$ | async)?.DG2_FOUT_RATE" [temp_return]="(data$ | async)?.DG2_FOUT_TEMPC" [dens_return]="(data$ | async)?.DG2_FOUT_DENS"
+                            [cons]="abs((data$ | async)?.DG2_CONS_RATE)" [consL]="(data$ | async)?.DG2_CONS_TODAY">
+                        </app-diesel-generator-no-rpm>
+                    </div>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 1, 2)?.type === 'DG_NO_RPM_VTOTAL'">
+                    <app-diesel-generator-no-rpm-vtotal 
+                        [flow_supply]="(data$ | async)?.DG2_FIN_RATE" [flow_return]="(data$ | async)?.DG2_FOUT_RATE" 
+                        [cons]="abs((data$ | async)?.DG2_CONS_RATE)" [consL]="(data$ | async)?.DG2_CONS_TODAY">
+                    </app-diesel-generator-no-rpm-vtotal>
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="grid-r1c4" [class.no-equipment]="getCardDetail((data$ | async)?.VES_GPS_SPEED, 1, 3)?.type.length === 0">
+        <div class="card">
+            <h6 class="card-header">
+                <span class="pull-left" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag">
+                    {{ getCardDetail(tag, 1, 3)?.title }}
+                </span>
+                <span class="pull-right">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                </span>
+            </h6>
+
+            <div class="card-body pd-0" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag" [class.no-equipment]="getCardDetail(tag, 1, 3)?.type.length === 0">
+                
+                <ng-template [ngIf]="getCardDetail(tag, 1, 3)?.type === 'ME1'">
+                    <app-main-engine [flow_supply]="(data$ | async)?.SME_FIN_RATE" [temp_supply]="(data$ | async)?.SME_FIN_TEMPC" [dens_supply]="(data$ | async)?.SME_FIN_DENS"
+                        [flow_return]="(data$ | async)?.SME_FOUT_RATE" [temp_return]="(data$ | async)?.SME_FOUT_TEMPC" [dens_return]="(data$ | async)?.SME_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.SME_CONS_RATE)" [consL]="(data$ | async)?.SME_CONS_TODAY" [speed_eng]="(data$ | async)?.SME_SPD_CALC" [speed_gear]="(data$ | async)?.SPS_SPD_CALC"
+                        [load]="(data$ | async)?.SME_ENGINE_LOAD">
+                    </app-main-engine>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 1, 3)?.type === 'DG_RPM'">
+                    <app-aux-engine [flow_supply]="(data$ | async)?.SME_FIN_RATE" [temp_supply]="(data$ | async)?.SME_FIN_TEMPC" [dens_supply]="(data$ | async)?.SME_FIN_DENS"
+                        [flow_return]="(data$ | async)?.SME_FOUT_RATE" [temp_return]="(data$ | async)?.SME_FOUT_TEMPC" [dens_return]="(data$ | async)?.SME_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.SME_CONS_RATE)" [consL]="(data$ | async)?.SME_CONS_TODAY" [speed_eng]="(data$ | async)?.SME_SPD_CALC">
+                    </app-aux-engine>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 1, 3)?.type === 'DG_NO_RPM'">
+                    <app-diesel-generator-no-rpm [flow_supply]="(data$ | async)?.DG3_FIN_RATE" [temp_supply]="(data$ | async)?.DG3_FIN_TEMPC" [dens_supply]="(data$ | async)?.DG3_FIN_DENS"
+                        [flow_return]="(data$ | async)?.DG3_FOUT_RATE" [temp_return]="(data$ | async)?.DG3_FOUT_TEMPC" [dens_return]="(data$ | async)?.DG3_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.DG3_CONS_RATE)" [consL]="(data$ | async)?.DG3_CONS_TODAY">
+                    </app-diesel-generator-no-rpm>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 1, 3)?.type === 'DG_NO_RPM_VTOTAL'">
+                    <app-diesel-generator-no-rpm-vtotal 
+                        [flow_supply]="(data$ | async)?.DG3_FIN_RATE" [flow_return]="(data$ | async)?.DG3_FOUT_RATE" 
+                        [cons]="abs((data$ | async)?.DG3_CONS_RATE)" [consL]="(data$ | async)?.DG3_CONS_TODAY">
+                    </app-diesel-generator-no-rpm-vtotal>
+                </ng-template>
+                
+            </div>
+        </div>
+    </div>
+
+
+        
+    <div class="grid-r2c1">
+        <div class="card">
+            <h6 class="card-header">
+                <span class="pull-left">MAP</span>
+                <span class="pull-right">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                </span>
+            </h6>
+            <div class="card-body card-maps">
+                <app-map></app-map>
+            </div>
+        </div>
+    </div>
+        
+        
+    <div class="grid-r2c2" [class.no-equipment]="getCardDetail((data$ | async)?.VES_GPS_SPEED, 2, 1)?.type.length === 0">
+        <div class="card">
+            <h6 class="card-header">
+                <span class="pull-left" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag">
+                    {{ getCardDetail(tag, 2, 1)?.title }}
+                </span>
+                <span class="pull-right">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                </span>
+            </h6>
+            <div class="card-body pd-0" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag" [class.no-equipment]="getCardDetail(tag, 2, 1)?.type.length === 0">
+                
+                <ng-template [ngIf]="getCardDetail(tag, 2, 1)?.type === 'AE1' || getCardDetail(tag, 2, 1)?.type === 'DG_RPM'">
+                    <app-aux-engine [flow_supply]="(data$ | async)?.PAE_FIN_RATE" [temp_supply]="(data$ | async)?.PAE_FIN_TEMPC" [dens_supply]="(data$ | async)?.PAE_FIN_DENS"
+                        [flow_return]="(data$ | async)?.PAE_FOUT_RATE" [temp_return]="(data$ | async)?.PAE_FOUT_TEMPC" [dens_return]="(data$ | async)?.PAE_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.PAE_CONS_RATE)" [consL]="(data$ | async)?.PAE_CONS_TODAY" [speed_eng]="(data$ | async)?.PAE_SPD_CALC">
+                    </app-aux-engine>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 2, 1)?.type === 'DG_NO_RPM'">
+                    <app-diesel-generator-no-rpm [flow_supply]="(data$ | async)?.DG4_FIN_RATE" [temp_supply]="(data$ | async)?.DG4_FIN_TEMPC" [dens_supply]="(data$ | async)?.DG4_FIN_DENS"
+                        [flow_return]="(data$ | async)?.DG4_FOUT_RATE" [temp_return]="(data$ | async)?.DG4_FOUT_TEMPC" [dens_return]="(data$ | async)?.DG4_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.DG4_CONS_RATE)" [consL]="(data$ | async)?.DG4_CONS_TODAY">
+                    </app-diesel-generator-no-rpm>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 2, 1)?.type === 'DG_NO_RPM_VTOTAL'">
+                    <app-diesel-generator-no-rpm-vtotal 
+                        [flow_supply]="(data$ | async)?.DG4_FIN_RATE" [flow_return]="(data$ | async)?.DG4_FOUT_RATE" 
+                        [cons]="abs((data$ | async)?.DG4_CONS_RATE)" [consL]="(data$ | async)?.DG4_CONS_TODAY">
+                    </app-diesel-generator-no-rpm-vtotal>
+                </ng-template>
+                
+            </div>
+        </div>
+    </div>
+        
+        
+    <div class="grid-r2c3" [class.no-equipment]="getCardDetail((data$ | async)?.VES_GPS_SPEED, 2, 2)?.type.length === 0">
+        <div class="card">
+            <h6 class="card-header">
+                <span class="pull-left" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag">
+                    {{ getCardDetail(tag, 2, 2)?.title }}
+                </span>
+                <span class="pull-right">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                </span>
+            </h6>
+            <div class="card-body pd-0" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag" [class.no-equipment]="getCardDetail(tag, 2, 2)?.type.length === 0">
+
+                <ng-template [ngIf]="getCardDetail(tag, 2, 2)?.type === 'AE1' || getCardDetail(tag, 2, 2)?.type === 'DG_RPM'">
+                    <app-aux-engine [flow_supply]="(data$ | async)?.CAE_FIN_RATE" [temp_supply]="(data$ | async)?.CAE_FIN_TEMPC" [dens_supply]="(data$ | async)?.CAE_FIN_DENS"
+                        [flow_return]="(data$ | async)?.CAE_FOUT_RATE" [temp_return]="(data$ | async)?.CAE_FOUT_TEMPC" [dens_return]="(data$ | async)?.CAE_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.CAE_CONS_RATE)" [consL]="(data$ | async)?.CAE_CONS_TODAY" [speed_eng]="(data$ | async)?.CAE_SPD_CALC">
+                    </app-aux-engine>
+                </ng-template>
+
+                <ng-template [ngIf]="getCardDetail(tag, 2, 2)?.type === 'MOTOR'">
+                    <app-electric-motor [speed]="(data$ | async)?.SPS_SPD_CALC">
+                    </app-electric-motor>
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+        
+        
+    <div class="grid-r2c4" [class.no-equipment]="getCardDetail((data$ | async)?.VES_GPS_SPEED, 2, 3)?.type.length === 0">
+        <div class="card">
+            <h6 class="card-header">
+                <span class="pull-left" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag">
+                    {{ getCardDetail(tag, 2, 3)?.title }}
+                </span>
+                <span class="pull-right">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                </span>
+            </h6>
+            <div class="card-body pd-0" *ngIf="(data$ | async)?.VES_GPS_SPEED as tag" [class.no-equipment]="getCardDetail(tag, 2, 3)?.type.length === 0">
+                
+                <ng-template [ngIf]="getCardDetail(tag, 2, 3)?.type === 'AE1' || getCardDetail(tag, 2, 3)?.type === 'DG_RPM'">
+                    <app-aux-engine [flow_supply]="(data$ | async)?.SAE_FIN_RATE" [temp_supply]="(data$ | async)?.SAE_FIN_TEMPC" [dens_supply]="(data$ | async)?.SAE_FIN_DENS"
+                        [flow_return]="(data$ | async)?.SAE_FOUT_RATE" [temp_return]="(data$ | async)?.SAE_FOUT_TEMPC" [dens_return]="(data$ | async)?.SAE_FOUT_DENS"
+                        [cons]="abs((data$ | async)?.SAE_CONS_RATE)" [consL]="(data$ | async)?.SAE_CONS_TODAY" [speed_eng]="(data$ | async)?.SAE_SPD_CALC">
+                    </app-aux-engine>
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

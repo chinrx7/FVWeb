@@ -1,0 +1,48 @@
+.content{
+    padding-right: 0px;
+    padding-left: 0px; 
+    height: 60px;
+    background: rgba(20,45,61,1);
+}
+
+@media screen and (min-width:1919px){
+    /* .content{
+        height: calc(8.4vh);
+    } */
+}
+
+.row{
+    height: 100%;
+    text-align: center;
+    color:white;
+}
+
+a:link {color: gainsboro;}      /* unvisited link */
+a:visited {color: gainsboro;}   /* visited link */
+a:hover {color: gainsboro;}     /* mouse over link */
+a:active {color: gainsboro;}    /* selected link */
+
+.font-footer{
+    color: gainsboro;
+    font-size: 11px;
+    /* padding-top: 10px; */
+}
+
+.left{
+    text-align: left;
+    padding-left: 15px;
+}
+
+.right{
+    text-align: right;
+    padding-right: 15px;
+}
+
+.center{
+    text-align: center;
+}
+
+.logo{
+    width: 30px;
+    padding-right: 5px;
+}

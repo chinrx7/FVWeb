@@ -1,0 +1,16 @@
+<div class="container-fluid" style="margin-top: 5px;">
+    <app-date-control  (selectedReport)="selectedReport($event)" [loading]="loading"></app-date-control>
+    <div class="row content" *ngIf="pdf">
+            <!-- <button type="button" (click)="download()" class="btn btn-success download">Download</button> -->
+            <div class="download">
+                <i class="fa fa-download " (click)="download()" aria-hidden="true"></i>
+            </div>
+        <div class="col-lg-12">
+            <!-- <pdf-viewer [src]="pdf" [zoom]="5" [fit-to-page]="true" [show-all]="true" [autoresize]="true"></pdf-viewer> -->
+            <pdf-viewer [src]="pdf" [zoom]="0.9" [show-all]="true" [autoresize]="true"></pdf-viewer>
+        </div>
+    </div>
+    <div class="row blank-content" *ngIf="!pdf">
+        <p class="lead"></p>
+    </div>
+</div>

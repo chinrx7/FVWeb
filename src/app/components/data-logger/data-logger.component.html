@@ -1,0 +1,45 @@
+<div class="container-fluid" style="margin-top: 5px;">
+    <app-datetime-control [loading]="loading" (showLoggerEmit)="showLogger($event)" (selectedTimer)="downloadLogger($event)"
+        [selectAll]="true" [searchTitle]="'DOWNLOAD'"></app-datetime-control>
+    <div class="row content" *ngIf="headers?.length > 0">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th scope="col">Timestamp</th>
+                        <th scope="col" *ngFor="let h of headers">{{h.name}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of datahis">
+                        <td style="width:140px;text-align:center;">{{data.timestamp}}</td>
+                        <td [ngClass]="{'emp': d==''}" *ngFor="let d of data.values">{{(d | valueLength : 2) || '---'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row blank-content" *ngIf="headers?.length == 0">
+        <p class="lead"></p>
+    </div>
+    <div class="row time-period" *ngIf="headers?.length > 0">
+        <div class="col-lg-12 align-self-center">
+            <nav aria-label="Page navigation example" id="client-paginator">
+                <ul class="pagination pagination-responsive justify-content-center">
+                    <li class="page-item" (click)="previous()" *ngIf="pageActive != 1">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item" 
+                    *ngFor="let page of pages" 
+                    [ngClass]="{'active': page == pageActive}"
+                    (click)="setActive(page)">
+                        <a class="page-link">{{page}}</a>
+                    </li>
+                    <li class="page-item" (click)="next()" *ngIf="pageActive != pageCount">
+                        <a class="page-link">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

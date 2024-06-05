@@ -1,0 +1,138 @@
+<div class="container" [@listAnimation]="data.length">
+  <div class="row">
+    <div class="col-lg-11 pd-r-0">
+      <div class="row summary-header">
+        <div class="images-group">
+        </div>
+        <div class="info-group text-white">
+        </div>
+        <div class="lastseen-group block1 header-group">
+          <div>LAST SEEN</div>
+          <div>&nbsp;</div>
+          <div>
+            <i class="fa fa-clock-o header-icon" aria-hidden="true"></i>
+            
+          </div>
+        </div>
+        <div class="speed-group block2 header-group">
+          <div>SPEED</div>
+          <div>(knot)</div>
+          <div>
+            <i class="fa fa-tachometer header-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="distance-group block1 header-group">
+          <div>DISTANCE</div>
+          <div>(mile)</div>
+          <div>
+            <i class="fa fa-expand header-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="fuel-cons-group block2 header-group">
+            <div>FUEL CONS.</div>
+            <div>(L)</div>
+            <div>
+              <i class="fa fa-tint header-icon" aria-hidden="true"></i>
+            </div>
+          </div>
+        <div class="coordinates-group block1 header-group">
+          <div>LOCATION</div>
+          <div>&nbsp;</div>
+          <div>
+            <i class="fa fa-map-marker header-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngFor="let a of data" >
+    <div class="row">
+      <div class="col-lg-11 pd-r-0">
+        <div class="row summary">
+          <div class="images-group">
+            <img class="vessel-img" [src]="a?.fv.img">
+          </div>
+          <div class="info-group text-white">
+            <div class="info-name" >
+              {{a?.fv.name }}
+            </div>
+            <div class="info-desc">
+              {{a?.fv.desc}}
+            </div>
+          </div>
+          <div class="lastseen-group block1 value-box">
+            <div class="value font-size-21" [dashColor]="a?.newData?.VES_GPS_LAT?.timestamp">{{fvTimeService.getLastSeenFromString(a?.newData?.VES_GPS_LAT?.timestamp)}}</div>
+          </div>
+          <div class="speed-group block2">
+            <div class="value font-size-21 v-value">{{a?.newData?.VES_GPS_SPEED?.value  | valueLength : 1}}</div>
+          </div>
+          <div class="distance-group block1">
+            <div class="value font-size-21 v-value">{{a?.newData?.VES_GPS_DIS_TODAY?.value  | valueLength : 1}}</div>
+          </div>
+          <div class="fuel-cons-group block2">
+              <div class="value font-size-21 v-value">{{a?.newData?.VES_CONS_TODAY?.value  | valueLength : 0}}</div>
+            </div>
+          <div class="coordinates-group block1 coor-value v-value" style="padding-top:10px;">
+            <div>
+                {{coordinatesService.getLat(a?.newData?.VES_GPS_LAT?.value  | valueLength : 5)}}
+            </div>
+            <div>
+                {{coordinatesService.getLong(a?.newData?.VES_GPS_LONG?.value  | valueLength : 5)}}
+            </div>
+          </div>
+       
+        </div>
+      </div>
+      <a [routerLink]="['../realtime',a?.fv.prefix]" class="col-lg-1 pd-0">
+        <div class="arrow-marker mg-r-15">
+            <div class="value value-marker">{{a?.id}}</div>
+        </div>
+      </a>
+    </div>
+  </ng-container>
+  <ng-container *ngFor="let a of blankData">
+    <div class="row opa-7">
+      <div class="col-lg-11 pd-r-0">
+        <div class="row summary">
+          <div class="images-group">
+            <img class="vessel-img">
+          </div>
+          <div class="info-group text-white">
+            <div class="info-name" >
+              &nbsp;
+            </div>
+            <div class="info-desc">
+              &nbsp;
+            </div>
+          </div>
+          <div class="lastseen-group block1 value-box">
+            <div class="value font-size-21">&nbsp;</div>
+          </div>
+          <div class="speed-group block2">
+            <div class="value font-size-21 v-value">&nbsp;</div>
+          </div>
+          <div class="distance-group block1">
+            <div class="value font-size-21 v-value">&nbsp;</div>
+          </div>
+          <div class="fuel-cons-group block2">
+              <div class="value font-size-21 v-value">&nbsp;</div>
+            </div>
+          <div class="coordinates-group block1 coor-value v-value" style="padding-top:10px;">
+            <div>
+              &nbsp;
+            </div>
+            <div>
+              &nbsp;
+            </div>
+          </div>
+       
+        </div>
+      </div>
+      <!-- <a class="col-lg-1 pd-0">
+        <div class="arrow-marker mg-r-15">
+            <div class="value value-marker">&nbsp;</div>
+        </div>
+      </a> -->
+    </div>
+  </ng-container>
+</div>

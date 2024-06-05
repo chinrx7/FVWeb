@@ -1,0 +1,296 @@
+.control-report .btn-group button:first-child{
+    width: 100%;
+    text-align: left;
+}
+
+.control-report{
+    background-color: #E4F6FC;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.control-report .btn-group {
+    width: 100%;
+}
+
+.btn-light,.dropdown-menu{
+    font-size: 13px;
+}
+
+.dropdown-menu{
+    width: 210px;
+    padding-left: 10px;
+}
+
+.dropdown-toggle-split{
+    text-align: right !important;
+}
+
+.btn{
+    border-radius: 0px;
+}
+.btn-text{
+    text-align: center;
+}
+
+.title{
+    font-size: 13px;
+    padding-bottom: 5px;
+}
+
+.control-report input{
+    border-radius: 0px;
+}
+
+.group{
+    float: left;
+    margin-right: 10px;
+}
+
+.form-control{
+    font-size: 13px;
+}
+
+.period{
+    text-align: center;
+    color: white;
+    padding: 0px 3px;
+    height: 100%;
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
+}
+
+
+.period div{
+    background-color: #506177;
+    font-size: 12px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+
+.time-control .row:not(:first-child){
+    padding-top: 5px;
+    
+}
+
+.time-control{
+    padding-bottom: 10px;
+}
+.btn-ok{
+    width:100%;
+    background-color: #2399e5;
+    color:white;
+    cursor: pointer;
+}
+>>> .ui-widget-content .active{
+    background-color: cornflowerblue !important;
+}
+
+.period .active{
+    background-color: brown  !important;
+}
+@media screen and (max-width:992px){
+    .period div{
+        height: 36px;
+        line-height: 2.3;
+    }
+
+    .period[_ngcontent-c5] {
+        text-align: center;
+        color: white;
+        height: 100%; 
+        cursor: pointer;
+    }
+}
+
+.dropdown-menu{
+    max-height: 350px;
+    overflow: auto;
+}
+
+.menu-item{
+    cursor: pointer;
+}
+
+
+.dropdown-item {
+    padding: 0rem 1.5rem !important;
+
+}
+
+.form-check {
+    margin-bottom: .4rem !important;
+}
+
+.form-check-label{
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+}
+
+.pd-lr-5{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+>>> .ui-calendar{
+    width:100% !important;
+}
+
+>>>  .ui-inputtext{
+    width: calc(100% - 25px) !important;
+    padding: 5px 10px !important;
+    font-size: 13px;
+}
+
+
+>>> .ui-widget-content{
+    font-family: 'Titillium Web, sans-serif';
+}
+
+
+>>>  .ui-calendar-button{
+    width: 25px !important;
+}
+
+::ng-deep  .ui-dialog {
+    width: 90% !important;
+}
+
+
+.dialog div[class^="col"]{
+    margin-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+
+button{
+    border: none;
+    outline:none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.list-group-item{
+    font-size: 11px !important;
+    padding: .25rem 0.75rem !important;
+    background-color: darkslategray;
+    color: white;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+>>> p-dialog  .ui-dialog.ui-widget .ui-dialog-titlebar {
+    padding: 0.4em 1.5em;
+}
+
+
+.control-btn{
+    font-size: 15px;
+}
+
+
+.control-report .btn-group button:first-child{
+    width:initial !important;
+
+}
+
+
+.search-tags{
+    line-height: 1;
+    width: 100% !important;
+}
+
+
+
+>>> p-dialog  .ui-widget-header {
+    background:initial;
+    background-color: rgba(48, 94, 118, 0.9) !important;
+    
+}
+
+.list-group-item-info {
+    background-color: darkblue;
+}
+.list-group-item-info:hover {
+    background-color: darkblue !important;
+    color:white;
+}
+
+
+
+
+.list-group-item.active {
+    border: none;
+    
+}
+
+
+>>> p-dialog  .ui-widget-content {
+   border: none;
+   background-color: rgba(48, 94, 118, 0.9) !important;
+}
+
+
+
+.list-group-item:first-child  {
+    /* border-top-left-radius: .25rem; */
+    /* border-top-right-radius: .25rem; */
+        border-top-left-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+}
+
+.list-group-item:last-child {
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.btn-params{
+    background-color: #2399e5;
+    color:white;
+}
+
+.favorite{
+    background-color:lightslategray;
+}
+
+.icon-loading{
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.icon-submit{
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.btn-ok{
+    padding: 5px !important;
+    background-color: #2399e5;
+}
+
+.btn-ok:hover{
+    background-color: cornflowerblue;
+}
+
+
+>>> .different{
+    zoom:90%;
+    top: 10% !important;
+    left: 5% !important;
+}

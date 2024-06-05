@@ -1,0 +1,168 @@
+<div class="container-fluid">
+    <div id="group-ftd1">
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Flow
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(flow_supply?.tagName,flow_supply?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="flow_supply">
+                {{flow_supply?.value | valueLength : 1}}
+            </div>
+            <div class="ftd1-unit">
+                L/h
+            </div>
+        </div>
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Temp.
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(temp_supply?.tagName,temp_supply?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="temp_supply">
+                {{temp_supply?.value | valueLength : 1}}
+            </div>
+            <div class="ftd1-unit">
+                °C
+            </div>
+        </div>
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Dens.
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(dens_supply?.tagName,dens_supply?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="dens_supply">
+                {{dens_supply?.value | valueLength : 1}}
+            </div>
+            <div class="ftd1-unit">
+                kg/m3
+            </div>
+        </div>
+    </div>
+    <div id="group-ftd2">
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Flow
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(flow_return?.tagName,flow_return?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="flow_return">
+                {{flow_return?.value | valueLength : 1}}
+            </div>
+            <div class="ftd1-unit">
+                L/h
+            </div>
+        </div>
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Temp.
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(temp_return?.tagName,temp_return?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="temp_return">
+                {{temp_return?.value | valueLength : 1}}
+            </div>
+            <div class="ftd1-unit">
+                °C
+            </div>
+        </div>
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Dens.
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(dens_return?.tagName,dens_return?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="dens_return">
+                {{dens_return?.value | valueLength : 1}}
+            </div>
+            <div class="ftd1-unit">
+                kg/m3
+            </div>
+        </div>
+    </div>
+    <div id="group-ftd3">
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Cons.
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(cons?.tagName,cons?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="cons">
+                {{cons?.value | valueLength : 1}}
+            </div>
+         
+            <div class="ftd1-unit">
+                L/h
+            </div>
+        </div>
+    </div>
+    <div id="group-ftd4">
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Cons.
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(consL?.tagName,consL?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="consL">
+                {{consL?.value | valueLength : 0}}
+            </div>
+         
+            <div class="ftd1-unit">
+                L
+            </div>
+        </div>
+    </div>
+    <div id="fuel-use">
+
+    </div>
+    <div id="fuel-supply-title">
+        <div style="text-align: center;line-height: 1.5;">
+            <i class="fa fa-caret-right" aria-hidden="true" style="line-height: 0.1;font-size: 18px;"></i>
+        </div>
+        <div style="font-size: 10px;line-height: 0.1;text-align: center;">
+            Fuel Supply
+        </div>
+    </div>
+    <div id="fuel-return-title">
+        <div style="font-size: 10px;line-height: 0.6;">
+            Fuel Return
+        </div>
+        <div style="text-align: center;line-height: 1.5;">
+            <i class="fa fa-caret-left" aria-hidden="true" style="line-height: 0.1;font-size: 18px;"></i>
+        </div>
+
+    </div>
+    <div id="engine">
+        DG
+    </div>
+    <!-- <div id="gear">
+        Motor
+    </div> -->
+    <!-- <div id="line-engine-shaft">
+
+    </div> -->
+    <!-- <div id="line-prop-shaft">
+
+    </div> -->
+    <!-- <div id="enging-shaft-title">
+        Engine Shaft
+    </div> -->
+    <!-- <div id="prop-shaft-title">
+        Motor Shaft
+    </div> -->
+    <!-- <div id="line1">
+    </div> -->
+    <!-- <div id="line2">
+    </div> -->
+    <!-- <div id="speed-engine">
+            <div class="ftd1">
+                    <div class="ftd1-name">
+                        Speed
+                    </div>
+                    <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(speed_eng?.tagName,speed_eng?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="speed_eng">
+                        {{speed_eng?.value | valueLength : 0}}
+                    </div>
+                    <div class="ftd1-unit">
+                        RPM
+                    </div>
+                </div>
+    </div> -->
+    <!-- <div id="speed-prop">
+        <div class="ftd1">
+            <div class="ftd1-name">
+                Speed
+            </div>
+            <div class="ftd1-value" [matTooltip]="tooltipFormatService.getTooltip(speed_gear?.tagName,speed_gear?.timestamp)" [matTooltipPosition]="'above'" [dashValue]="speed_gear">
+                {{speed_gear?.value | valueLength : 0}}
+            </div>
+            <div class="ftd1-unit">
+                RPM
+            </div>
+        </div>
+    </div> -->
+</div>

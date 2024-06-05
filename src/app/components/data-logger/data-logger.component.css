@@ -1,0 +1,134 @@
+
+
+.content{
+    margin-top: 4px;
+    background-color: white;
+    height: calc(100vh - 231px);
+    overflow: overlay;
+}
+
+
+.content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+.emp{
+    background-color: red;
+}
+
+
+thead{
+    font-size: 14px;
+}
+
+tbody{
+    font-size: 12px;
+}
+
+th:first-child(){
+    width: 140px;
+}
+
+table td{
+    padding: .2rem;
+    text-align: center;
+}
+
+table th{
+    font-size: 12px !important;
+    text-align:  center;
+    vertical-align: middle;
+    padding: .3rem;
+}
+
+table{
+    background-color: white;
+}
+
+.download{
+    position: fixed;
+    right: 51px;
+    z-index: 50;
+    top: 86%;
+    margin-top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: darkcyan;
+    color: white;
+}
+
+
+.blank-content{
+    margin-top: 5px;
+    /* margin-bottom: 5px; */
+    /* height: calc(100vh - 167px); */
+    margin-bottom: 4px;
+    height: calc(100vh - 170px);
+    background-color: rgba(48, 94, 118, 0.8)
+}
+
+.lead{
+    color: white;
+    width: 100%;
+    display: table-cell;
+    padding: 10px;
+}
+
+
+@media screen and (min-width:1600px){
+    .blank-content{
+        /* height: calc(56vh) !important; */
+        margin-bottom: 4px;
+    }
+
+    .content{
+        /* height: calc(50vh) !important; */
+    }
+}
+
+.time-period {
+    text-align: center;
+    margin-bottom: 4px;
+    background-color: #E4F6FC;
+    /*color: azure; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.arrow {
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: brown;
+    border-radius: 30px;
+    padding: 5px;
+    font-size: 17px;
+}
+
+
+.pagination{
+    margin: 0;
+}
+
+.page-link{
+    /* color: #007bff !important; */
+    cursor: pointer;
+    font-size: 13px;
+    padding: .6rem .8rem;
+}
+

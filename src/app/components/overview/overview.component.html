@@ -1,0 +1,20 @@
+<div class="main">
+    <div class="grid-table bg-opa" *ngIf="data.length == 0">
+        <div class="loader">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-table bg-opa" *ngIf="data.length > 0">
+        <app-summary-overview *ngIf="windowWidth >= 1200" [data]="data" [blankData]="blankData"></app-summary-overview>
+        <app-summary-overview-card *ngIf="windowWidth < 1200" [data]="data"></app-summary-overview-card>
+    </div>
+    <div class="grid-map">
+        <app-maps-all [data]="data"></app-maps-all>
+    </div>
+   
+</div>
